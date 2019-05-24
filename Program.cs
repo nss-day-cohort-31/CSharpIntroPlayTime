@@ -18,9 +18,11 @@ namespace CSharpIntroPlayTime
             {
                 GroceryList();
             }
-            else  // change this to only call GuessingGame() when the user enters option "B"
+            else if (response == "B")  // change this to only call GuessingGame() when the user enters option "B"
             {
                 GuessingGame();
+            } else {
+                Console.WriteLine("You've selected an invalid option. Please enter 'A' or 'B' to start.");
             }
 
             // If the user didn't input an "A" or "B" print a message 
@@ -40,6 +42,8 @@ namespace CSharpIntroPlayTime
                 groceries.Add(input);
 
                 // Ask for the input again
+                Console.WriteLine("Enter another grocery item, or enter a blank line if you are finished.");
+                input = Console.ReadLine();
             }
 
             Console.WriteLine();
@@ -47,6 +51,7 @@ namespace CSharpIntroPlayTime
             foreach (string grocery in groceries)
             {
                 // Write the grocery to the console
+                Console.WriteLine(grocery);
             }
         }
 
@@ -64,12 +69,23 @@ namespace CSharpIntroPlayTime
                 // Add a conditional to determine if the user's guess is higher than the answer
                 //  If so, print "Too High!" to the console
 
+                if(guess > answer) {
+                    Console.WriteLine("Too high! Try a lower number this time.");
+                }
+
                 // Add a conditional to determine if the user's guess is lower than the answer
                 //  If so, print "Too Low!" to the console
 
+                else if (guess < answer) {
+                    Console.WriteLine("Too low! Try a higher number this time.");
+                }
+
                 // When the user guesses correctly, tell them and return from the method
-                Console.WriteLine("You got it!");
-                return;
+                else if(guess == answer) {
+                    Console.WriteLine("You got it!");
+                    return;  
+                }
+                
             }
 
             Console.WriteLine("Better luck next time...");
